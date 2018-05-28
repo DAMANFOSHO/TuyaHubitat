@@ -76,9 +76,11 @@ function processDeviceCommand(request, response) {
 //#################################################
 //ADDED LINES
 	var deviceNo = request.headers["deviceno"]
+        var scheme = request.headers["scheme"]
 	response.setHeader("deviceNo", deviceNo)
 //#################################################
 	response.setHeader("action", action)
+
         
 
 	var respMsg = "deviceCommand sending to IP: " + deviceIP + " Command: " + command
@@ -151,6 +153,25 @@ function processDeviceCommand(request, response) {
   //});
 });
 		break
+
+		case "statusAll":
+			   
+  tuya.get({schema: true,'dps': dps}).then(status => {
+    console.log('Status: ' + status);
+    results = JSON.stringify(status)
+    
+               response.setHeader("cmd-response", results );
+               response.setHeader("onoff", "on");
+	        console.log("Status (" + status + ") sent to SmartThings.");
+	        response.end();
+               
+      
+        return;
+      
+    
+ 
+});
+                break
 
 		default:
 			tuya.destroy();
