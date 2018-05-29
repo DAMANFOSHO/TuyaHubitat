@@ -49,7 +49,18 @@ preferences {
 	input(name: "gatewayIP", type: "text", title: "Gateway IP", required: true, displayDuringSetup: true)
 	input(name: "deviceID", type: "text", title: "Device ID", required: true, displayDuringSetup: true)
 	input(name: "localKey", type: "text", title: "Local Key", required: true, displayDuringSetup: true)
-    input(name: "usr", type: "text", title: "Master", required: true, displayDuringSetup: true)
+    input (name: "usr", type: "enum", title: "Master",
+				options: [
+					"Plug_1", 
+					"Plug_2", 
+					"Plug_3", 
+					"Plug_4", 
+					"USB", 
+					"ALLon" 
+					
+				],
+				required: true
+			)
    
 }
 
